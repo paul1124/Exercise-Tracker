@@ -15,12 +15,12 @@ export default function EditExercises({ match }) {
   useEffect(() => {
     axios.get('http://localhost:5000/exercises/' + match.params.id)
       .then(res => {
-        if(res.data.length > 0) {
+        console.log(res.data);
+          // console.log(res.data);
           setUsername(res.data.username);
-          setDescription(res.datat.description);
+          setDescription(res.data.description);
           setDuration(res.data.duration);
           setDate(new Date(res.data.date));
-        }
       })
       .catch(err => console.log(err));
 
@@ -28,10 +28,11 @@ export default function EditExercises({ match }) {
       .then(res => {
         // setUsers(res.data);
         setUsers(res.data.map(user => user.username));
+        setUsername(res.data[0].username);
         // console.log(res.data);
       })
       .catch(err => console.log(err));
-  });
+  }, []);
   return (
     <div>
       <h3>Edit Exercise Log</h3> 

@@ -11,8 +11,6 @@ export default function CreateExercise() {
   const [ users, setUsers ] = useState([]);
 
   useEffect(() => {
-    // setUsers(['test user']);
-    // setUsername('test user');
     axios.get('http://localhost:5000/users/')
       .then(res => {
         if(res.data.length > 0) {
